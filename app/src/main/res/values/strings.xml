@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Buy From Candroid User</string>
+    <string name="fashion_one">f s i n</string>
+    <string name="fashion_two"> a h o</string>
+    <string name="electronics_one">e e t o i s</string>
+    <string name="electronics_two"> l c r n c</string>
+    <string name="furniture_one">f r i u e</string>
+    <string name="furniture_two"> u n t r</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="enter_your_password">enter your password</string>
+    <string name="start_shopping">start shopping</string>
 </resources>
