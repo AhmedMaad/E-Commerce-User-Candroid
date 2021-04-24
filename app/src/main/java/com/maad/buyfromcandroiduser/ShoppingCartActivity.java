@@ -10,7 +10,6 @@ public class ShoppingCartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_cart);
-        //show any icon fading while loading from firestore
-        //make picture transition when clicking the product and navigating to product details
+        setTitle(R.string.my_orders);
     }
 }

@@ -26,20 +26,22 @@ public class ProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
-        loadProducts();
+        loadProducts(getIntent().getStringExtra("cat"));
+        //show any icon fading while loading from firestore
+        //make picture transition when clicking the product and navigating to product details
     }
 
     //TODO: Load product by category
-    private void loadProducts() {
+    private void loadProducts(String cat) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference collection = db.collection("products");
         collection.addSnapshotListener((value, error) -> {
             if (value != null) {
                 List<DocumentSnapshot> documentSnapshots = value.getDocuments();
                 for (int i = 0; i < documentSnapshots.size(); ++i) {
-                    Log.d("trace", "Number of products: " + (i + 1));
                     ProductModel productModel = documentSnapshots.get(i).toObject(ProductModel.class);
-                    products.add(productModel);
+                    if (productModel.getCategory().equals(cat))
+                        products.add(productModel);
                 }
                 showProducts();
             }
