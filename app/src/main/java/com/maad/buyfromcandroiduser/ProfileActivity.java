@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import java.util.Random;
@@ -49,6 +50,11 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void updateProfile(View view) {
-        
+        EditText nameET = findViewById(R.id.et_name);
+        EditText mobileET = findViewById(R.id.et_mobile);
+        EditText addressET = findViewById(R.id.et_address);
+        String writtenName = nameET.getText().toString();
+        String writtenMobile = mobileET.getText().toString();
+        String writtenAddress = addressET.getText().toString();
     }
 }

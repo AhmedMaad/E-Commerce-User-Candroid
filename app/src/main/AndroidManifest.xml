@@ -13,10 +13,10 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".ProductActivity" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".HomeActivity"
             android:theme="@style/NoActionBar" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".RegisterActivity"
             android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
