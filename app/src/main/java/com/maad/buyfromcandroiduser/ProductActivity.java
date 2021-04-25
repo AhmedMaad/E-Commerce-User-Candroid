@@ -11,9 +11,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,17 +29,16 @@ public class ProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
         loadProducts(getIntent().getStringExtra("cat"));
-        //show any icon fading while loading from firestore
         //make picture transition when clicking the product and navigating to product details
     }
 
-    //TODO: Load product by category
     private void loadProducts(String cat) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference collection = db.collection("products");
-        collection.addSnapshotListener((value, error) -> {
-            if (value != null) {
-                List<DocumentSnapshot> documentSnapshots = value.getDocuments();
+        collection.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                List<DocumentSnapshot> documentSnapshots = queryDocumentSnapshots.getDocuments();
                 for (int i = 0; i < documentSnapshots.size(); ++i) {
                     ProductModel productModel = documentSnapshots.get(i).toObject(ProductModel.class);
                     if (productModel.getCategory().equals(cat))

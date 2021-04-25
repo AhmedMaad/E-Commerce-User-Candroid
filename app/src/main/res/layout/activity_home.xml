@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="3"
+    android:background="@color/gray_blue"
     tools:context=".HomeActivity">
 
     <androidx.cardview.widget.CardView

@@ -12,4 +12,7 @@
     <string name="my_profile">My Profile</string>
     <string name="my_orders">My Orders</string>
     <string name="price">Price:</string>
+    <string name="write_your_name">Write your name</string>
+    <string name="enter_your_mobile_number">Enter your mobile number</string>
+    <string name="address">Address</string>
 </resources>
