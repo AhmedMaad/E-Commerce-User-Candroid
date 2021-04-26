@@ -2,6 +2,8 @@ package com.maad.buyfromcandroiduser;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,6 +12,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
@@ -58,11 +62,15 @@ public class ProductActivity extends AppCompatActivity {
 
         adapter.setOnProductClickListener(new ProductAdapter.OnProductClickListener() {
             @Override
-            public void onProductClick(int position) {
+            public void onProductClick(int position, ImageView productImage) {
                 Intent i = new Intent(ProductActivity.this
                         , ProductDetailsActivity.class);
                 i.putExtra("product", products.get(position));
-                startActivity(i);
+                i.putExtra("imageTransition", ViewCompat.getTransitionName(productImage));
+                ActivityOptionsCompat transition =
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(ProductActivity.this
+                        , productImage, ViewCompat.getTransitionName(productImage));
+                startActivity(i, transition.toBundle());
             }
         });
 

@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -25,7 +26,7 @@ class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHold
     }
 
     public interface OnProductClickListener{
-        void onProductClick(int position);
+        void onProductClick(int position, ImageView productImage);
     }
 
     public void setOnProductClickListener(OnProductClickListener onProductClickListener) {
@@ -44,10 +45,13 @@ class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHold
     public void onBindViewHolder(@NonNull ProductAdapter.ProductViewHolder holder, int position) {
         holder.title.setText(products.get(position).getTitle());
         holder.price.setText(products.get(position).getPrice() + "$");
+        holder.image.setImageResource(R.drawable.bg1);
         Glide
                 .with(activity)
                 .load(products.get(position).getImage())
                 .into(holder.image);
+        //Transition name has to be unique
+        ViewCompat.setTransitionName(holder.image, products.get(position).getId());
     }
 
     @Override
@@ -71,7 +75,7 @@ class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHold
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onProductClickListener.onProductClick(getAdapterPosition());
+                    onProductClickListener.onProductClick(getAdapterPosition(), image);
                 }
             });
 
