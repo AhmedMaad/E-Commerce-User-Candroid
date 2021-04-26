@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -29,6 +30,7 @@ public class ProfileActivity extends AppCompatActivity {
             , R.drawable.bg2
             , R.drawable.bg3
             , R.drawable.bg4};
+    private UserModel user;
     private Uri imageUri;
     private FirebaseFirestore db;
     private EditText nameET;
@@ -63,7 +65,7 @@ public class ProfileActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        UserModel user = documentSnapshot.toObject(UserModel.class);
+                        user = documentSnapshot.toObject(UserModel.class);
                         if (user.getName() != null)
                             nameET.setText(user.getName());
                         if (user.getAddress() != null)
@@ -97,7 +99,10 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void updateProfile(View view) {
-        uploadImage();
+        if (imageUri != null)
+            uploadImage();
+        else
+            uploadProfile(imageUri); //Image Uri in this case is null
     }
 
     private void uploadImage() {
@@ -130,12 +135,19 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
-    private void uploadProfile(Uri imageUri){
+    private void uploadProfile(Uri imageUri) {
         String writtenName = nameET.getText().toString();
         String writtenMobile = mobileET.getText().toString();
         String writtenAddress = addressET.getText().toString();
-        UserModel user = new UserModel(writtenName, email, writtenAddress
-                , writtenMobile, imageUri.toString(), UserModel.id);
+
+        String imageLink;
+        if (imageUri != null)
+            imageLink = imageUri.toString();
+        else
+            imageLink = user.getProfilePicture();
+
+        user = new UserModel(writtenName, email, writtenAddress
+                , writtenMobile, imageLink, UserModel.id);
 
         db
                 .collection("users")
