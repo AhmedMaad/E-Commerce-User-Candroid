@@ -7,7 +7,7 @@ class UserModel {
     private String address;
     private String phoneNumber;
     private String profilePicture;
-    private String id;
+    public static String id;
 
     public UserModel() {
     }
@@ -19,13 +19,13 @@ class UserModel {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.profilePicture = profilePicture;
-        this.id = id;
+        UserModel.id = id;
     }
 
     //Used when we first create a user
     public UserModel(String email, String id) {
         this.email = email;
-        this.id = id;
+        UserModel.id = id;
     }
 
     public String getName() {
@@ -46,9 +46,5 @@ class UserModel {
 
     public String getProfilePicture() {
         return profilePicture;
-    }
-
-    public String getId() {
-        return id;
     }
 }

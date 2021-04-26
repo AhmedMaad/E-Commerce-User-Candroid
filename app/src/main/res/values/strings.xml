@@ -15,4 +15,6 @@
     <string name="write_your_name">Write your name</string>
     <string name="enter_your_mobile_number">Enter your mobile number</string>
     <string name="address">Address</string>
+    <string name="profile_updated">Profile Updated</string>
+    <string name="email">Email:</string>
 </resources>

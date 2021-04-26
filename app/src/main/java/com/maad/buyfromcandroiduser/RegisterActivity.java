@@ -44,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             //create new user in firestore then navigate to home
                             String id = task.getResult().getUser().getUid();
-                            String email = task.getResult().getUser().getEmail();
+                            UserModel.id = id;
                             createUser(id, email);
                         } else
                             login(email, password);
@@ -57,8 +57,10 @@ public class RegisterActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful())
+                        if (task.isSuccessful()) {
                             openHomeActivity();
+                            UserModel.id = task.getResult().getUser().getUid();
+                        }
                     }
                 });
     }
@@ -68,10 +70,11 @@ public class RegisterActivity extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db
                 .collection("users")
-                .add(userModel)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                .document(id)
+                .set(userModel)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
+                    public void onSuccess(Void aVoid) {
                         openHomeActivity();
                     }
                 });
