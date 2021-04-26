@@ -17,10 +17,19 @@ class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHold
 
     private Activity activity;
     private ArrayList<ProductModel> products;
+    private OnProductClickListener onProductClickListener;
 
     public ProductAdapter(Activity activity, ArrayList<ProductModel> products) {
         this.activity = activity;
         this.products = products;
+    }
+
+    public interface OnProductClickListener{
+        void onProductClick(int position);
+    }
+
+    public void setOnProductClickListener(OnProductClickListener onProductClickListener) {
+        this.onProductClickListener = onProductClickListener;
     }
 
     @NonNull
@@ -28,7 +37,7 @@ class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHold
     public ProductAdapter.ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = activity.getLayoutInflater()
                 .inflate(R.layout.product_list_item, parent, false);
-        return new ProductViewHolder(view);
+        return new ProductViewHolder(view, onProductClickListener);
     }
 
     @Override
@@ -52,11 +61,20 @@ class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHold
         public TextView title;
         public TextView price;
 
-        public ProductViewHolder(@NonNull View itemView) {
+        public ProductViewHolder(@NonNull View itemView
+                , OnProductClickListener onProductClickListener) {
             super(itemView);
             image = itemView.findViewById(R.id.iv_product);
             title = itemView.findViewById(R.id.tv_title);
             price = itemView.findViewById(R.id.tv_price_vaue);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onProductClickListener.onProductClick(getAdapterPosition());
+                }
+            });
+
         }
     }
 }

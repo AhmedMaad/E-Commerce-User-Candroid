@@ -55,6 +55,17 @@ public class ProductActivity extends AppCompatActivity {
         GridLayoutManager manager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
+
+        adapter.setOnProductClickListener(new ProductAdapter.OnProductClickListener() {
+            @Override
+            public void onProductClick(int position) {
+                Intent i = new Intent(ProductActivity.this
+                        , ProductDetailsActivity.class);
+                i.putExtra("product", products.get(position));
+                startActivity(i);
+            }
+        });
+
     }
 
     @Override
