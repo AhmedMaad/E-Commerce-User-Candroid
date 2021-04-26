@@ -1,16 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".ProductDetailsActivity">
+    android:background="@color/gray_blue">
 
-    <ImageView
-        android:id="@+id/iv_product"
-        android:layout_gravity="center"
-        android:layout_width="160dp"
-        android:layout_height="160dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        tools:context=".ProductDetailsActivity">
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/iv_product"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_gravity="center"
+            tools:src="@drawable/bg1" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/source_code_pro_black"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            tools:text="T-Shirt" />
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:textSize="24sp"
+            tools:text="White T-shirt Medium in size, 100% Cotton" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/total"
+                android:textColor="@color/black"
+                android:textSize="28sp" />
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:textColor="@color/orange"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                tools:text="$ 579" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/quantity"
+                android:textColor="@color/black"
+                android:textSize="28sp" />
+
+            <Button
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:text="@string/minus"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:text="1" />
+
+            <Button
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:text="@string/plus"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_margin="16dp"
+            android:text="@string/add_to_basket"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            app:cornerRadius="16dp" />
+
+    </LinearLayout>
+
+</ScrollView>
