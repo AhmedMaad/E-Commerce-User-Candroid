@@ -16,7 +16,7 @@ public class ProductModel implements Parcelable {
     //Required Empty Constructor for reading from firebase
     public ProductModel(){}
 
-    public ProductModel(String title, String description, double price
+    /*public ProductModel(String title, String description, double price
             , int quantity, String category, String image) {
         this.title = title;
         this.description = description;
@@ -24,6 +24,13 @@ public class ProductModel implements Parcelable {
         this.quantity = quantity;
         this.category = category;
         this.image = image;
+    }*/
+
+    //This constructor is used when adding products to basket
+    public ProductModel(String image, int quantity, String title){
+        this.image = image;
+        this.quantity = quantity;
+        this.title = title;
     }
 
     protected ProductModel(Parcel in) {

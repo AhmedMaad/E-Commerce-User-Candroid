@@ -125,16 +125,19 @@ public class ProductDetailsActivity extends AppCompatActivity {
     }
 
     private void addOrderedProduct() {
-        Map<String, Object> cartProduct = new HashMap<>();
-        cartProduct.put("title", product.getTitle());
-        cartProduct.put("quantity", quantitySB.getProgress());
-        cartProduct.put("image", product.getImage());
-        cartProduct.put("userID", UserModel.id);
+        /*Map<String, Object> order = new HashMap<>();
+        order.put("title", product.getTitle());
+        order.put("quantity", quantitySB.getProgress());
+        order.put("image", product.getImage());
+        order.put("userID", UserModel.id);*/
+
+        OrderModel order = new OrderModel(UserModel.id, product.getTitle()
+                , quantitySB.getProgress(), product.getImage());
 
         //add item in new collection with userID who bought the product
         db
                 .collection("orders")
-                .add(cartProduct)
+                .add(order)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {

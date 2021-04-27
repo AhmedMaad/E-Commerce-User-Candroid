@@ -34,7 +34,9 @@
             <ImageView
                 android:id="@+id/iv_profile"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/bg3" />
 
         </androidx.cardview.widget.CardView>
 
