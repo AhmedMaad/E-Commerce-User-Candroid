@@ -63,7 +63,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp">
 
@@ -74,39 +74,36 @@
                 android:textColor="@color/black"
                 android:textSize="28sp" />
 
-            <Button
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="16dp"
-                android:text="@string/minus"
-                android:textSize="24sp" />
-
             <TextView
+                android:id="@+id/tv_quantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
+                android:text="@string/zero"
                 android:textColor="@color/black"
                 android:textSize="24sp"
-                android:textStyle="bold"
-                tools:text="1" />
+                android:textStyle="bold" />
 
-            <Button
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:text="@string/plus"
-                android:textSize="24sp" />
+            <SeekBar
+                android:id="@+id/sb_quantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_margin="16dp"
+            android:onClick="addToBasket"
             android:text="@string/add_to_basket"
             android:textAllCaps="false"
             android:textSize="20sp"
-            app:cornerRadius="16dp" />
+            app:cornerRadius="16dp"
+            app:icon="@drawable/ic_shopping_cart"
+            app:iconGravity="textStart" />
 
     </LinearLayout>
 

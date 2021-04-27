@@ -32,11 +32,10 @@ public class ProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
-        loadProducts(getIntent().getStringExtra("cat"));
-        //make picture transition when clicking the product and navigating to product details
     }
 
     private void loadProducts(String cat) {
+        products.clear();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference collection = db.collection("products");
         collection.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -96,4 +95,9 @@ public class ProductActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadProducts(getIntent().getStringExtra("cat"));
+    }
 }

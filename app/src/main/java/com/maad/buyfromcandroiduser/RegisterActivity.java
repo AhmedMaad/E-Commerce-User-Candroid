@@ -33,7 +33,8 @@ public class RegisterActivity extends AppCompatActivity {
         EditText passwordET = findViewById(R.id.et_password);
         String email = emailET.getText().toString();
         String password = passwordET.getText().toString();
-        signUp(email, password);
+        //signUp(email, password);
+        signUp("a@gmail.com", "123456");
     }
 
     private void signUp(String email, String password) {
