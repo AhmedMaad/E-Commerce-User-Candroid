@@ -62,7 +62,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        returnedQuantity = (long) documentSnapshot.get("quantity");
+                        returnedQuantity = documentSnapshot.getLong("quantity");
                         updateSeekBarSettings();
                     }
                 });
@@ -125,16 +125,11 @@ public class ProductDetailsActivity extends AppCompatActivity {
     }
 
     private void addOrderedProduct() {
-        /*Map<String, Object> order = new HashMap<>();
-        order.put("title", product.getTitle());
-        order.put("quantity", quantitySB.getProgress());
-        order.put("image", product.getImage());
-        order.put("userID", UserModel.id);*/
 
         OrderModel order = new OrderModel(UserModel.id, product.getTitle()
                 , quantitySB.getProgress(), product.getImage());
 
-        //add item in new collection with userID who bought the product
+        //add item in a new collection with userID who bought the product
         db
                 .collection("orders")
                 .add(order)

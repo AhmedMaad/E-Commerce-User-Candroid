@@ -66,10 +66,10 @@ public class ProductActivity extends AppCompatActivity {
                         , ProductDetailsActivity.class);
                 i.putExtra("product", products.get(position));
                 i.putExtra("imageTransition", ViewCompat.getTransitionName(productImage));
-                ActivityOptionsCompat transition =
+                ActivityOptionsCompat options =
                         ActivityOptionsCompat.makeSceneTransitionAnimation(ProductActivity.this
-                        , productImage, ViewCompat.getTransitionName(productImage));
-                startActivity(i, transition.toBundle());
+                                , productImage, ViewCompat.getTransitionName(productImage));
+                startActivity(i, options.toBundle());
             }
         });
 
@@ -98,6 +98,8 @@ public class ProductActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        loadProducts(getIntent().getStringExtra("cat"));
+        String cat = getIntent().getStringExtra("cat");
+        setTitle(cat);
+        loadProducts(cat);
     }
 }

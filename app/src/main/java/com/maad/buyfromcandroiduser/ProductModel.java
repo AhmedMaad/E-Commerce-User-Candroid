@@ -16,16 +16,6 @@ public class ProductModel implements Parcelable {
     //Required Empty Constructor for reading from firebase
     public ProductModel(){}
 
-    /*public ProductModel(String title, String description, double price
-            , int quantity, String category, String image) {
-        this.title = title;
-        this.description = description;
-        this.price = price;
-        this.quantity = quantity;
-        this.category = category;
-        this.image = image;
-    }*/
-
     //This constructor is used when adding products to basket
     public ProductModel(String image, int quantity, String title){
         this.image = image;
@@ -65,10 +55,6 @@ public class ProductModel implements Parcelable {
 
     public double getPrice() {
         return price;
-    }
-
-    public int getQuantity() {
-        return quantity;
     }
 
     public String getCategory() {
