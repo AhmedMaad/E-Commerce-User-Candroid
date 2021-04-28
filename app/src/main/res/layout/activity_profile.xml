@@ -25,7 +25,7 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:onClick="choosePicture"
-            app:cardCornerRadius="80dp"
+            app:cardCornerRadius="60dp"
             app:layout_constraintBottom_toBottomOf="@id/view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
